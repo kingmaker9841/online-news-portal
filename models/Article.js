@@ -13,5 +13,5 @@ const article = mongoose.Schema({
     category: { type: String, required: true}
 });
 
-const Article = mongoose.model('articles', article);
-module.exports = Article;
+const Articles = mongoose.model('articles', article);
+module.exports = Articles;
