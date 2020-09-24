@@ -1,0 +1,12 @@
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+
+
+let PORT = process.env.PORT || 5000;
+app.listen(PORT, ()=>{
+    console.log(`Server started on port ${PORT}`);
+})
