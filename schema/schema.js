@@ -19,11 +19,14 @@ const typeDefs = gql`
         publishDate: Date!
         createdDate: Date!
         lastModifiedDate: Date!
+        category: String!
     }
     type Query {
         categories : [Category]
         article (id: ID!) : Article
         headlines : [String]!
+        articles : [Article]
+        articleCategory (category: String!) : [Article]
     }
     type Mutation {
         addCategory (name: String!) : CategoryResponse!
@@ -38,6 +41,7 @@ const typeDefs = gql`
             publishDate: Date!
             createdDate: Date!
             lastModifiedDate: Date!
+            category: String!
         ) : ArticleResponse!
     }
     type CategoryResponse {

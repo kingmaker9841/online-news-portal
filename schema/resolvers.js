@@ -22,14 +22,19 @@ const resolvers = {
             } catch (err){
                 return undefined;
             }
+        },
+        articles : (_, __)=>{
+            return Article.find({});
+        },
+        articleCategory: (_,args)=>{
+            return Article.find({category: args.category});
         }
     },
     Date : new GraphQLScalarType({
         name: 'Date',
         description: 'Date custom Scalar type',
         parseValue(value){
-            let parsed = dayjs(value);
-            return parsed; // value from client
+            return dayjs(value); // value from client
         },
         serialize(value){
             console.log("Serialize",value);
@@ -37,7 +42,6 @@ const resolvers = {
              
         },
         parseLiteral(ast){
-            console.log(ast);
             if (ast.kind === Kind.STRING){
                 return dayjs(ast.value);
             }
@@ -66,13 +70,11 @@ const resolvers = {
         addArticle: async (parent, args, context, info)=>{
             let {headline, summary,state, description, source,
             mainImage, galleryImage, publishDate, createdDate,
-            lastModifiedDate} = args;
-            console.log(headline, summary,state, description, source,
-                mainImage, galleryImage, publishDate, createdDate,
-                lastModifiedDate);
+            lastModifiedDate, category} = args;
             let art =  new Article({
                 headline, summary, state, description, source, mainImage,
-                galleryImage, publishDate, createdDate, lastModifiedDate
+                galleryImage, publishDate, createdDate, lastModifiedDate,
+                category
             });
             try {
                 let artWait = await art.save();
