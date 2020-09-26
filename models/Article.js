@@ -9,8 +9,8 @@ const article = mongoose.Schema({
     createdDate: {type: Date, required: true},
     lastModifiedDate: { type: Date, required: true},
     mainImage: {type: String},
-    galleryImage: [{type: String}],
-    category: { type: String, required: true}
+    galleryImage: [{type: String}]
+    // category: { type: String, required: true}
 });
 
 const Articles = mongoose.model('articles', article);
